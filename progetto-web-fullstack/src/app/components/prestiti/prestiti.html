@@ -1,1 +1,45 @@
-<p>prestiti works!</p>
+<div class="space-y-6">
+  
+  <div class="flex items-center space-x-3 mb-6">
+    <div class="p-3 bg-indigo-600/10 text-indigo-400 rounded-xl text-2xl animate-pulse-slow">🔄</div>
+    <div>
+      <h2 class="text-2xl font-bold text-slate-100">Nuovo Prestito</h2>
+      <p class="text-slate-400 text-sm">Assegna un libro disponibile a un utente registrato.</p>
+    </div>
+  </div>
+
+  <div class="space-y-5">
+    
+    <div class="relative group">
+      <label class="block text-sm font-semibold text-slate-300 mb-2">Seleziona Libro</label>
+      <select 
+        [(ngModel)]="idLibroSelezionato"
+        class="w-full p-4 pl-6 text-slate-100 bg-slate-900 rounded-2xl border border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all group-hover:border-indigo-800">
+        <option *ngFor="let libro of libri" [value]="libro.id" [disabled]="!libro.is_disponibile" class="bg-slate-950">
+          {{ libro.titolo }} ({{ libro.autore }}) {{ libro.is_disponibile ? '✓' : '✖ In Prestito' }}
+        </option>
+      </select>
+    </div>
+
+    <div class="relative group">
+      <label class="block text-sm font-semibold text-slate-300 mb-2">Seleziona Utente</label>
+      <select 
+        [(ngModel)]="idUtenteSelezionato"
+        class="w-full p-4 pl-6 text-slate-100 bg-slate-900 rounded-2xl border border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all group-hover:border-indigo-800">
+        <option *ngFor="let utente of utenti" [value]="utente.id" class="bg-slate-950">
+          {{ utente.nome }} ({{ utente.email }})
+        </option>
+      </select>
+    </div>
+
+    <button 
+      (click)="registraPrestito()"
+      [disabled]="!idLibroSelezionato || !idUtenteSelezionato"
+      class="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-700/20 hover:bg-indigo-700 disabled:bg-slate-800 disabled:text-slate-500 disabled:shadow-none transition-all duration-200 transform hover:scale-[1.01] active:scale-95 group flex items-center justify-center space-x-2">
+      <span>Conferma Prestito</span>
+      <span class="group-hover:translate-x-1 transition-transform">→</span>
+    </button>
+
+  </div>
+
+  </div>
