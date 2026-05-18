@@ -11,22 +11,21 @@ import { Libro } from '../../models';
   templateUrl: './catalogo.html',
   styleUrls: ['./catalogo.css']
 })
-export class Catalogo implements OnInit {
+export class CatalogoComponent implements OnInit {
   libri: Libro[] = [];
   testoCercato: string = '';
 
   constructor(private biblioService: BibliotecaService) {}
 
   ngOnInit() {
-    // Prendiamo i libri dal servizio quando la pagina si carica
     this.libri = this.biblioService.getLibri();
   }
 
-  // Questa funzione filtra i libri in base a quello che scrivi
   get libriFiltrati() {
     return this.libri.filter(l => 
       l.titolo.toLowerCase().includes(this.testoCercato.toLowerCase()) ||
-      l.autore.toLowerCase().includes(this.testoCercato.toLowerCase())
+      l.autore.toLowerCase().includes(this.testoCercato.toLowerCase()) ||
+      l.genere.toLowerCase().includes(this.testoCercato.toLowerCase())
     );
   }
 }

@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { Catalogo } from './components/catalogo/catalogo';
+import { CatalogoComponent } from './components/catalogo/catalogo';
+import { PrestitiComponent } from './components/prestiti/prestiti';
 import { UtentiComponent } from './components/utenti/utenti';
 
 @Component({
   selector: 'app-root',
-  imports: [Catalogo, UtentiComponent],
+  imports: [CatalogoComponent, PrestitiComponent, UtentiComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
